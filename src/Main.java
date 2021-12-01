@@ -34,6 +34,7 @@ public class Main {
 
 			if (rq.getUrlPath().equals("exit")) {
 				break;
+
 			} else if (rq.getUrlPath().equals("/usr/article/list")) {
 				System.out.println("- 게시물 리스트 -");
 				System.out.println("--------------------");
