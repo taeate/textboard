@@ -1,9 +1,11 @@
 import java.util.*;
 
+
+
 public class Main {
 	static void makeTestData(List<Article> articles) {
 
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < 30; i++){
 
 			int id = i + 1;
 			articles.add(new Article(id , "제목"+ id, "내용"+ id));
@@ -41,6 +43,25 @@ public class Main {
 				System.out.println("번호 / 제목");
 				System.out.println("--------------------");
 
+				List<Article> sortedArticles = articles;
+				List<Article> filteredArticles = articles;
+
+
+				if (params.containsKey("searchKeyword")){
+					String searchKeyword = params.get("searchKeyword");
+
+					// 검색된 내용이랑 검색어랑 일치하면 게시글을 가져온다
+
+					for (Article article : articles){
+
+						if (article.title.contains(searchKeyword) || article.body.contains(searchKeyword)){
+							ArrayList<> filter =
+						}
+					}
+
+
+			}
+
 
 				boolean orderByIdDesc = true;
 
@@ -48,15 +69,13 @@ public class Main {
 					orderByIdDesc = false;
 				}
 				if (orderByIdDesc){
-					for (int i = articles.size() - 1; i >= 0; i--) {
-						Article article = articles.get(i);
-						System.out.printf("%d / %s\n", article.id, article.title);
+
+					sortedArticles = Util.reverseList(sortedArticles);
+
 				}
-				}else {
-					for (Article article : articles){
+					for (Article article : sortedArticles){
 						System.out.printf(" %d / %s\n",article.id,article.title);
 					}
-				}
 
 			} else if (rq.getUrlPath().equals("/usr/article/detail")) {
 				if (params.containsKey("id") == false) {
@@ -153,6 +172,17 @@ class Rq {
 
 // 수정불가능
 class Util {
+
+
+	public static<T> List<T> reverseList(List<T> list) {
+		List<T> reverse = new ArrayList<>(list.size());
+
+		for ( int i = list.size() - 1; i >= 0; i-- ) {
+			reverse.add(list.get(i));
+		}
+		return reverse;
+	}
+
 	static Map<String, String> getParamsFromUrl(String url) {
 		Map<String, String> params = new HashMap<>();
 		String[] urlBits = url.split("\\?", 2);
