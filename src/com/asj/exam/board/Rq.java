@@ -1,3 +1,5 @@
+package com.asj.exam.board;
+
 import java.util.Map;
 
 class Rq {

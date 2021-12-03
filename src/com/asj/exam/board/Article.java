@@ -1,3 +1,5 @@
+package com.asj.exam.board;
+
 class Article {
     int id;
     String title;
